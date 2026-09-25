@@ -1,0 +1,69 @@
+:root{
+  --font-display:'Space Grotesk', sans-serif;
+  --font-body:'Inter', sans-serif;
+}
+html{ scroll-behavior: smooth; }
+body{ background:#070B14; color:#EAF1FB; }
+::selection{ background: rgba(0,216,255,.28); }
+:focus-visible{ outline:2px solid #00D8FF; outline-offset:3px; border-radius:6px; }
+
+/* Reveal-on-scroll (mirrors Framer Motion "Reveal" component) */
+.reveal{
+  opacity:0;
+  filter:blur(6px);
+  transform:translateY(28px);
+  transition: opacity .65s cubic-bezier(.21,.47,.32,.98), filter .65s cubic-bezier(.21,.47,.32,.98), transform .65s cubic-bezier(.21,.47,.32,.98);
+}
+.reveal.reveal-left{ transform:translateX(28px); }
+.reveal.in-view{ opacity:1; filter:blur(0px); transform:translate(0,0); }
+
+/* Tilt cards (WhyUs) */
+.tilt-card{ transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s; transform-style:preserve-3d; }
+.tilt-card:hover{ transform: perspective(700px) rotateX(-4deg) rotateY(4deg) translateY(-4px); }
+
+/* Service / product / industry card hover lift */
+.lift-card{ transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+.lift-card:hover{ transform: translateY(-8px); }
+.lift-scale:hover{ transform: scale(1.02); }
+
+.img-zoom{ transition: transform .7s ease, opacity .7s ease; }
+.group:hover .img-zoom{ transform: scale(1.1); opacity:.6; }
+.group:hover .img-zoom.opacity-boost{ opacity:.75; }
+
+/* Magnetic buttons */
+.magnetic{ transition: transform .12s ease-out; will-change: transform; }
+
+/* Marquee track duplicated for seamless loop */
+.marquee-track{ display:flex; width:max-content; gap:4rem; animation: marquee 28s linear infinite; }
+
+/* Number tabular */
+.tabular{ font-variant-numeric: tabular-nums; }
+
+/* Nav underline hover */
+.nav-link{ position:relative; }
+.nav-link .underline-bar{ position:absolute; left:1rem; right:1rem; bottom:.25rem; height:1px; background:linear-gradient(90deg,#00D8FF,#2F6BFF); transform:scaleX(0); transition:transform .3s; }
+.nav-link:hover .underline-bar{ transform:scaleX(1); }
+
+/* Accordion chevron / plus rotation handled via inline class toggles in JS */
+
+[data-lucide]{ display:inline-block; }
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}
+.partner-logo{ filter:brightness(1); }
+.partner-logo:hover{ transform:translateY(-2px); }
+.partner-word:hover{ transform:translateY(-2px); }
+
+/* ---- Enquiry form (Contact section) ---- */
+.enq-field{ width:100%; border-radius:.75rem; border:1px solid rgba(148,163,184,.14); background:rgba(7,11,20,.6); padding:.7rem 1rem; font-size:.875rem; color:#EAF1FB; outline:none; transition:border-color .2s, box-shadow .2s; }
+.enq-field::placeholder{ color:rgba(143,160,190,.7); }
+.enq-field:focus{ border-color:rgba(0,216,255,.6); box-shadow:0 0 0 3px rgba(0,216,255,.12); }
+.enq-field option{ background:#0D1420; color:#EAF1FB; }
+textarea.enq-field{ resize:vertical; min-height:7rem; }
+.enq-hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; } /* spam trap: humans never see it */
+
